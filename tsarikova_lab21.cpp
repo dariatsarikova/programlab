@@ -8,25 +8,28 @@
 #include <cstdlib>
 using namespace std;
 
-void AddElementsend();
-void AddElementson();
-void AddElementsxz();
-void exitelementk();
-void exitelementon();
-void exitelementend();
-void AddElementsxzkyda();
-void exitelements();
+void AddElementsend(int n, double*& arr);
+void AddElementson(int n, double*& arr);
+void AddElementsxz(int n, double*& arr);
+void exitelementk(int n, double*& arr);
+void exitelementon(int n, double*& arr);
+void exitelementend(int n, double*& arr);
+double *Addel(int n);
+void input(int n, double* arr);
+void exit(int n, double* arr);
 int main()
 {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
-    int key;
+    int key,n;
+    cout << "Введите количество элементов в массиве";
+    cin >> n;
 
     //начало работы с меню
     do
     {
         //выбор пункта меню
-        cout << "Выберите номер задания (1-8) или нажмите 0 ";
+        cout << "Выберите номер задания (1-6) или нажмите 0 ";
         cin >> key;
 
         // выход из меню после ввода нуля
@@ -39,42 +42,61 @@ int main()
         else if (key == 1)
         {
             cout << " < Задание " << key << " > " << endl;
-            AddElementsend();
+            double*arr=Addel(n);
+            input(n, arr);
+            AddElementsend(n,arr);
+            n += 1;
+            exit( n, arr);
+            delete[] arr;
         }
         else if (key == 2)
         {
             cout << " < Задание " << key << " > " << endl;
-            AddElementson();
+            double* arr = Addel(n);
+            input(n, arr);
+            AddElementson( n, arr);
+            n += 1;
+            exit(n, arr);
+            delete[] arr;
         }
         else if (key == 3)
         {
             cout << " < Задание " << key << " > " << endl;
-            AddElementsxz();
+            double* arr = Addel(n);
+            input(n, arr);
+            AddElementsxz(n, arr);
+            n += 1;
+            exit(n, arr);
+            delete[] arr;
         }
         else if (key == 4)
         {
             cout << " < Задание " << key << " > " << endl;
-            exitelementend();
+            double* arr = Addel(n);
+            input(n, arr);
+            exitelementend(n, arr);
+            n = n - 1;
+            exit(n, arr);
+            delete[] arr;
         }
         else if (key == 5)
         {
             cout << " < Задание " << key << " > " << endl;
-            exitelementon();
+            double* arr = Addel(n);
+            input(n, arr);
+            exitelementon(n, arr);
+            n = n - 1;
+            exit(n, arr);
+            delete[] arr;
         }
         else if (key == 6)
         {
             cout << " < Задание " << key << " > " << endl;
-            exitelementk();
-        }
-        else if (key == 7)
-        {
-            cout << " < Задание " << key << " > " << endl;
-            AddElementsxzkyda();
-        }
-        else if (key == 8)
-        {
-            cout << " < Задание " << key << " > " << endl;
-            exitelements();
+            double* arr = Addel(n);
+            input(n, arr);
+            exitelementk(n, arr);
+            exit(n, arr);
+            delete[] arr;
         }
         else
         {
@@ -87,139 +109,62 @@ int main()
 }
 
 
-void AddElementsend()
+void AddElementsend(int n,double*&arr)
 {
-    ofstream f;
-    int n = 0;
-    f.open("massive.txt", ios::out | ios_base::trunc);
-    cout << "Введите размерность n: ";
-    cin >> n;
-    double* arr = new double[n];
-    int o = 0;
-    do {
-        arr[o] = rand() + 0.1 * (o + 1);
-        f << arr[o] << endl;
-        o = o + 1;
-    } while (o < n);
-    f.close();
-    ifstream fc;
-    fc.open("massive.txt", ios_base::in);
-    for (int i = 0; i > n; i++)
-    {
-        fc >> arr[i];
-    }
-    fc.close();
         double* buff = new double[n + 1];
         for (int i = 0; i < n; i++)
         {
             buff[i] = arr[i];
         }
-        buff[n] = 10.0;
+        buff[n+1] = 10.6;
         delete[] arr;
         arr = buff;
         n += 1;
-        f.open("massive.txt", ios::app);
-        for (int j = 0; j < n; j++)
+}
+
+void AddElementson(int n, double*& arr)
+{
+        double* buff = new double[n + 1];
+        buff[0] = 10.6;
+        for (int i = 1; i < n+1; i++)
         {
-            f << arr[j] << " ";
+            buff[i] = arr[i];
         }
-        f.close();
-        delete[] buff;
+        delete[] arr;
+        arr = buff;
+        n += 1;
 }
 
-void AddElementson()
+void AddElementsxz(int n, double*& arr)
 {
-    ofstream f;
-    int n = 0;
-    f.open("massive.txt", ios::out | ios_base::trunc);
-    cout << "Введите размерность n: ";
-    cin >> n;
-    double* arr = new double[n];
-    int o = 0;
-    do {
-        arr[o] = rand() + 0.1 * (o + 1);
-        f << arr[o] << endl;
-        o = o + 1;
-    } while (o < n);
-    f.close();
-    ifstream fc;
-    fc.open("massive.txt", ios_base::in);
-    for (int i = 0; i > n; i++)
-    {
-        fc >> arr[i];
-    }
-    fc.close();
-    double* buff = new double[n + 1];
-    buff[0] = 10.0;
-    for (int i = 1; i < n; i++)
-    {
-        buff[i] = arr[i];
-    }
-    delete[] arr;
-    arr = buff;
-    n += 1;
-    f.open("massive.txt", ios::app);
-    for (int j = 0; j < n; j++)
-    {
-        f << arr[j] << " ";
-    }
-    f.close();
-    delete[] buff;
-}
-
-void AddElementsxz()
-{
-    ofstream f;
-    int n = 0,index=0;
-    cout << "Введите размерность n: ";
-    cin >> n;
-    cout << "Введите размерность index: ";
+    int index;
+    cout << "index" << endl;
     cin >> index;
     if (index < 0 || index > n + 1)
     {
-        cout << "Ошибка! Боюсь, вы ввели неверные данные." << endl;
+        cout << "Error" << endl;
     }
     else
     {
-        f.open("massive.txt", ios::out | ios_base::trunc);
-        double* arr = new double[n];
-        int o = 0;
-        do {
-            arr[o] = rand() + 0.1 * (o + 1);
-            f << arr[o] << endl;
-            o = o + 1;
-        } while (o < n);
-        f.close();
-        ifstream fc;
-        fc.open("massive.txt", ios_base::in);
-        for (int i = 0; i > n; i++)
-        {
-            fc >> arr[i];
-        }
-        fc.close();
         double* buff = new double[n + 1];
         for (int i = 0; i < index; i++)
         {
             buff[i] = arr[i];
         }
-        buff[index] = 10.0;
+        buff[index] = 10.6;
         for (int i = index + 1; i < n + 1; i++)
         {
-            buff[i] = arr[i - 1];
+            buff[i] = arr[i];
         }
         delete[] arr;
         arr = buff;
         n += 1;
-        delete[] buff;
     }
 }
-void exitelementk()
+void exitelementk(int n, double*& arr)
 {
-    ofstream f;
-    int n = 0, index = 0;
-    cout << "Введите размерность n: ";
-    cin >> n;
-    cout << "Введите размерность index: ";
+    int index = 0;
+    cout << "Введите  index: ";
     cin >> index;
     if (index < 0 || index >= n - 1)
     {
@@ -227,216 +172,69 @@ void exitelementk()
     }
     else
     {
-        f.open("massive.txt", ios::out | ios_base::trunc);
-        double* arr = new double[n];
-        int o = 0;
-        do {
-            arr[o] = rand() + 0.1 * (o + 1);
-            f << arr[o] << endl;
-            o = o + 1;
-        } while (o < n);
-        f.close();
-        ifstream fc;
-        fc.open("massive.txt", ios_base::in);
-        for (int i = 0; i > n; i++)
-        {
-            fc >> arr[i];
-        }
-        fc.close();
         double* buff = new double[n - 1];
         for (int i = 0; i < index; i++)
         {
             buff[i] = arr[i];
         }
-        for (int i = index; i <= n; i++)
+        for (int i = index; i < n; i++)
         {
             buff[i] = arr[i + 1];
         }
         delete[] arr;
         arr = buff;
         n -= 1;
-        delete[] buff;
     }
 }
 
-void exitelementon()
+void exitelementon(int n, double*& arr)
 {
-    ofstream f;
-    int n = 0, index = 0;
-    cout << "Введите размерность n: ";
-    cin >> n;
-        f.open("massive.txt", ios::out | ios_base::trunc);
-        double* arr = new double[n];
-        int o = 0;
-        do {
-            arr[o] = rand() + 0.1 * (o + 1);
-            f << arr[o] << endl;
-            o = o + 1;
-        } while (o < n);
-        f.close();
-        ifstream fc;
-        fc.open("massive.txt", ios_base::in);
-        for (int i = 0; i > n; i++)
-        {
-            fc >> arr[i];
-        }
-        fc.close();
         double* buff = new double[n - 1];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n-1; i++)
         {
             buff[i] = arr[i+1];
         }
         delete[] arr;
         arr = buff;
-        n -= 1;
-        delete[] buff;
+        n =n- 1;
 }
 
-void exitelementend()
+void exitelementend(int n, double*& arr)
+{
+    double* buff = new double[n - 1];
+    for (int i = 0; i < n-1; i++)
+    {
+        buff[i] = arr[i];
+    }
+    delete[] arr;
+    arr = buff;
+    n =n- 1;
+}
+
+double *Addel(int n)
+{
+    double* arr = new double[n];
+    return arr;
+}
+
+void input(int n, double* arr)
 {
     ofstream f;
-    int n = 0, index = 0;
-    cout << "Введите размерность n: ";
-    cin >> n;
     f.open("massive.txt", ios::out | ios_base::trunc);
-    double* arr = new double[n];
     int o = 0;
     do {
-        arr[o] = rand() + 0.1 * (o + 1);
+        arr[o] = rand() % 5 + 0.1 * (o + 1);
         f << arr[o] << endl;
         o = o + 1;
     } while (o < n);
     f.close();
-    ifstream fc;
-    fc.open("massive.txt", ios_base::in);
-    for (int i = 0; i > n; i++)
-    {
-        fc >> arr[i];
-    }
-    fc.close();
-    double* buff = new double[n - 1];
-    for (int i = 0; i < n; i++)
-    {
-        buff[i] = arr[i + 1];
-    }
-    delete[] arr;
-    arr = buff;
-    n -= 1;
-    delete[] buff;
 }
 
-void AddElementsxzkyda()
+void exit(int n, double* arr)
 {
-    ofstream f;
-    int n = 0, in = 0,c=0,k=0,i=0;
-    cout << "Введите размерность n: ";
-    cin >> n;
-    cout << "Введите число после которого должен быть элемент: ";
-    cin >> in;
-    f.open("massive.txt", ios::out | ios_base::trunc);
-    double* arr = new double[n];
-    int o = 0;
-    do {
-        arr[o] = rand()%30 + 0.1 * (o + 1);
-        f << arr[o] << endl;
-        o = o + 1;
-    } while (o < n);
-    ifstream fc;
-    fc.open("massive.txt", ios_base::in);
-    for (int i = 0; i > n; i++)
+    for (int j = 0; j < n; j++)
     {
-        fc >> arr[i];
-    }
-    fc.close();
-    for (int i = 0; i > n; i++)
-    {
-        if (arr[i]==in)
-            c=i;
-    } 
-    if (c==0)
-    {
-        cout << "Ошибка! Боюсь, вы ввели неверные данные." << endl;
-    }
-    else
-    {
-        
-        double* buff = new double[n + 1];
-        for (int i = 0; arr[i] != in; i++)
-        {
-            buff[i] = arr[i];
-            k += 1;
-        }
-        buff[k+1] = 10.0;
-        for (int i = k + 2; i < n + 1; i++)
-        {
-            buff[i] = arr[i - 1];
-        }
-        delete[] arr;
-        arr = buff;
-        n += 1;
-        delete[] buff;
-    }
-}
-
-void exitelements()
-{
-    ofstream f;
-    int n = 0, in = 0, c = 0, k = 0, i = 0,a=0;
-    cout << "Введите размерность n: ";
-    cin >> n;
-    cout << "Введите число, которое должно быть удалено во всём массиве: ";
-    cin >> in;
-    f.open("massive.txt", ios::out | ios_base::trunc);
-    double* arr = new double[n];
-    int o = 0;
-    do {
-        arr[o] = rand() % 3 + 0.1 * (o + 1);
-        f << arr[o] << endl;
-        o = o + 1;
-    } while (o < n);
-    ifstream fc;
-    fc.open("massive.txt", ios_base::in);
-    for (int i = 0; i > n; i++)
-    {
-        fc >> arr[i];
-    }
-    fc.close();
-    while (i < n)
-    {
-        if (arr[i] == in)
-            c = c + 1;
-        i += 1;
-    }
-    cout << c << endl;
-    if (c == 0)
-    {
-        cout << "Ошибка! Боюсь, вы ввели неверные данные." << endl;
-    }
-    else
-    {
-        int* cm = new int[c];
-        while (i <= n)
-        {
-            if (arr[i] == in)
-                cm[a]=i;
-            i += 1;
-            a += 1;
-        }
-        double* buff = new double[n + 1];
-        for (int i = k + 1; i <=n; i++)
-        {
-            for (int i = 0; i != cm[a]; i++)
-            {
-                buff[i] = arr[i];
-                k += 1;
-            }
-            k += 1;
-            a += 1;
-        }
-        delete[] arr;
-        arr = buff;
-        n += 1;
-        delete[] buff;
+        cout << arr[j] << " ";
     }
 }
 
