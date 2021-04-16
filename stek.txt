@@ -1,0 +1,4 @@
+coffee no 0.5 blue
+tea yes 0.25 red
+coup no 0.75 purple
+

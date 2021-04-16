@@ -94,10 +94,12 @@ int main()
         }
         else if (key == 4)
         {
+            cout << "---" << endl;
             int n;
             double res,res2=1.0;
-            cout << " < Задание " << key << " > " << endl;
+            cout << " < Задание ---" << key << "--- > " << endl;
             n = Getr();
+            cout << "n=" << n << endl;
             if (n == 2)
             {
                 double* x = new double[n];
@@ -116,6 +118,7 @@ int main()
                 NewPam(A, n);
                 if (!Getisfile(A, n, "file4.txt"))
                     return 0;
+                printed(A, n, "A");
                 res = opred(A, n);
                 cout << "Определитель матрицы =" << res << endl;
                 deleted(A, n);
